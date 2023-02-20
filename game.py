@@ -76,15 +76,16 @@ class Receiver:
 # testing
 if __name__ == "__main__":
     # constants
-    epochs = 3000
+    epochs = 1000
     seed = 0
-    states = 10
-    actions = 10
-    signals = 10
+    states = 3
+    actions = 3
+    signals = 3
 
     def make_gif(filename_base):
         images = []
-        for filename in [f'{filename_base}_{i}.png' for i in range(epochs) if i % 25 == 0]:
+        nm = filename_base.split('-')[-1]
+        for filename in [f'{nm}_{i}.png' for i in range(epochs) if i % 25 == 0]:
             images.append(imageio.imread(filename))
         imageio.mimsave(f'{filename_base}.gif', images)
 
@@ -103,7 +104,7 @@ if __name__ == "__main__":
         S.update(reward)
         R.update(reward)
 
-        if epoch % 25 == 0:
+        if epoch % (epochs // 5) == 0:
             plt.tight_layout(pad=0)
             plot = sns.heatmap(
                 np.exp(R.action_weights) /
@@ -127,13 +128,13 @@ if __name__ == "__main__":
             plt.savefig(f"sender_{epoch}.png")
             plt.clf()
 
-        if epoch % 100 == 0:
+        if epoch % (epochs // 12) == 0:
             print(f'Epoch {epoch}, last 100 epochs reward: {past_rewards/100}')
             print(stimulus, signal, action, reward)
             past_rewards = 0
 
-    make_gif('sender')
-    make_gif('receiver')
+    make_gif(f'{states}-{actions}-{signals}-sender')
+    make_gif(f'{states}-{actions}-{signals}-receiver')
     print("Observation to message mapping:")
     print(S.signal_weights.argmax(1))
     print("Message to action mapping:")
