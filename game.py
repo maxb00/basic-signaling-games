@@ -1,6 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib import animation
 import seaborn as sns
 import imageio.v2 as imageio
 
@@ -11,11 +10,9 @@ class World:
         self.state = 0
         self.random = np.random.RandomState(seed)
 
-
     def get_state(self) -> int:
         self.state = self.random.randint(self.n_states)
         return self.state
-    
 
     def evaluate(self, action: int) -> int:
         return 1 if action == self.state else -1
@@ -128,7 +125,7 @@ if __name__ == "__main__":
             plt.savefig(f"sender_{epoch}.png")
             plt.clf()
 
-        if epoch % (epochs // 12) == 0:
+        if epoch % 100 == 0:
             print(f'Epoch {epoch}, last 100 epochs reward: {past_rewards/100}')
             print(stimulus, signal, action, reward)
             past_rewards = 0
