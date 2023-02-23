@@ -15,7 +15,7 @@ class World:
         return self.state
 
     def evaluate(self, action: int) -> int:
-        return 1 if action == self.state else -1
+        return 1 if action == self.state else 0
     
 
 class Sender:
@@ -31,8 +31,12 @@ class Sender:
         self.last_situation = (0, 0)
 
     def get_signal(self, stimulus: int) -> int:
-        num = np.exp(self.signal_weights[stimulus, :])
-        den = np.sum(np.exp(self.signal_weights[stimulus, :]))
+        # exponential calculation
+        # num = np.exp(self.signal_weights[stimulus, :])
+        # den = np.sum(np.exp(self.signal_weights[stimulus, :]))
+        # simple sum
+        num = self.signal_weights[stimulus, :]
+        den = np.sum(self.signal_weights[stimulus, :])
         probabilities = num / den
         signal = np.random.choice(self.n_signals, p=probabilities)
         self.last_situation = (stimulus, signal)
@@ -56,8 +60,12 @@ class Receiver:
         self.last_situation = (0, 0)
 
     def get_action(self, signal: int) -> int:
-        num = np.exp(self.action_weights[signal, :])
-        den = np.sum(np.exp(self.action_weights[signal, :]))
+        # exponential calculation
+        # num = np.exp(self.action_weights[signal, :])
+        # den = np.sum(np.exp(self.action_weights[signal, :]))
+        # simple sum
+        num = self.action_weights[signal, :]
+        den = np.sum(self.action_weights[signal, :])
         probabilities = num / den
         action = np.random.choice(self.n_actions, p=probabilities)
         self.last_situation = (signal, action)
@@ -91,7 +99,6 @@ if __name__ == "__main__":
     S, R = Sender(states, signals), Receiver(signals, actions)
     W = World(states, seed)
     past_rewards = 0
-    matrices = []
     for epoch in range(epochs):
         stimulus = W.get_state()
         signal = S.get_signal(stimulus)
