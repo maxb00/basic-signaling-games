@@ -1,6 +1,7 @@
 # Project-specific files
 *.png
 images/
+gifs/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
