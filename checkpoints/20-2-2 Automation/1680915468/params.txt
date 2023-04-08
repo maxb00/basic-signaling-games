@@ -1,0 +1,3 @@
+negative: 0.03,
+initial weight: 3
+final average reward: 0.0037000000000000015
