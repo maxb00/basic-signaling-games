@@ -1,3 +1,0 @@
-negative: 0.04,
-initial weight: 4.9999999999999996e-06
-final average reward: 0.004100000000000002

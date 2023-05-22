@@ -1,8 +1,15 @@
 # basic-signaling-games
 Python implementations of Basic Signaling Games proposed by David Lewis
 
-### Experiments
-I created a notebook for viewing results - like both gifs at once - all in one place, as they're easier to interpret. Physical copies of each GIF will stil be stored like is mentioned below, but the `experiment.ipynb` has up to date methods and explanations.
+## Experiments
+We have proposed 4 different setups. Setup 0 is the basic game proposed by Lewis, and 1-4 are our proposed setups.
 
-### GIF Names
-GIF name format is `{n_states}-{n_actions}-{n_signals}-[Role].gif`. For example, 3-3-3-Sender.gif represents a world with 3 states, 3 actions, and 3 signals and displays the Sender's learning history.
+* Setup 1: Predefined Regions, Sender Stimulus Generalization
+
+* Setup 2: Scarce signals, with and without Sender SG
+
+* Setup 3: Scarce signals, Sender and Reciever SG
+
+* Setup 4: Expanding the playing field.
+
+Each setup contains it's own README with more detail on its contents, but generally contain a mixture of an updated notebook and our previous checkpoints during development.
