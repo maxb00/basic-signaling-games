@@ -1,5 +1,5 @@
 # Project-specific files
-images/
+*.png
 gifs/
 
 # Byte-compiled / optimized / DLL files
